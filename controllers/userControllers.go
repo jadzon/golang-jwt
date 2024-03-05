@@ -73,6 +73,10 @@ func Login(c *gin.Context, db models.Database) {
 		c.IndentedJSON(http.StatusAccepted, gin.H{"message": "Successfully logged in"})
 	}
 }
+func Logout(c *gin.Context) {
+	c.SetCookie("Authcookerson", "", -1, "", "", false, true)
+	c.JSON(http.StatusOK, gin.H{"message": "Logged out"})
+}
 func Validate(c *gin.Context) {
 	c.IndentedJSON(http.StatusAccepted, gin.H{"message": "User Valid"})
 }

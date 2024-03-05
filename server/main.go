@@ -22,6 +22,9 @@ func main() {
 	router.POST("/login", func(c *gin.Context) {
 		controllers.Login(c, userDB)
 	})
+	router.POST("/logout", func(c *gin.Context) {
+		middleware.RequireAuth(c, userDB)
+	}, controllers.Logout)
 	router.GET("/validate", func(c *gin.Context) {
 		middleware.RequireAuth(c, userDB)
 	}, controllers.Validate)
